@@ -1,0 +1,18 @@
+const express = require('express');
+const router = express.Router();
+const ReactionController = require('../Controllers/MessageReactionController');
+
+module.exports = (app, io) => {
+    app.post('/api/messagereaction/:messageId/:reactionId', (req, res) => {
+        ReactionController.addReaction(req, res, io);
+    });
+
+    app.get('/api/messagereaction/message/:messageId', ReactionController.getReactionsByMessageId);
+
+    app.get('/api/messagereaction/', ReactionController.getReactionsByMessages);
+
+    app.put('/api/messagereaction/:messageId/:reactionId/', ReactionController.updateReaction);
+
+    app.delete('/api/messagereaction/:messageId/:reactionId/', ReactionController.deleteReaction);
+
+};

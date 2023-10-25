@@ -1,0 +1,96 @@
+const MessageReaction = require("../Models/Reaction/MessageReaction");
+const Message = require('../Models/Message');
+
+const addReaction = async (req, res) => {
+    try {
+        const messageId = req.params.messageId;
+        const reactionId = req.params.reactionId;
+        const userId = req.user.id;
+
+        const existingReaction = await MessageReaction.findOne({ messageId, reactionId, userId });
+
+        const message = await Message.findById(messageId);
+
+        if (existingReaction) {
+            await deleteReactionLogic(existingReaction._id);
+
+            if (message.reactionCounts.has(reactionId)) {
+                message.reactionCounts.set(reactionId, message.reactionCounts.get(reactionId) - 1);
+            }
+            await message.save();
+
+            return res.status(200).json({ message: 'Reaction removed' });
+        } else {
+            const messageReaction = new MessageReaction({
+                messageId: messageId,
+                reactionId: reactionId,
+                userId: userId
+            });
+
+            await messageReaction.save();
+
+            if (message.reactionCounts.has(reactionId)) {
+                message.reactionCounts.set(reactionId, message.reactionCounts.get(reactionId) + 1);
+            } else {
+                message.reactionCounts.set(reactionId, 1);
+            }
+            await message.save();
+
+            res.status(201).send({message: 'Reaction added successfully', data: messageReaction});
+        }
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Erreur serveur');
+    }
+};
+
+const getReactionsByMessages = async (req, res) => {
+    try {
+        const messageReactions = await MessageReaction.find();
+        res.status(200).send(messageReactions);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Erreur serveur');
+    }
+};
+
+const getReactionsByMessageId = async (req, res) => {
+    try {
+        const messageReactions = await MessageReaction.find({ messageId: req.params.messageId });
+
+        console.log(messageReactions);
+        res.status(200).send(messageReactions);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Erreur serveur');
+    }
+};
+
+
+const updateReaction = async (req, res) => {
+    try {
+        const messageReaction = await MessageReaction.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.status(200).send(messageReaction);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Erreur serveur');
+    }
+};
+
+const deleteReactionLogic = async (reactionId) => {
+    await MessageReaction.findByIdAndDelete(reactionId);
+};
+
+const deleteReaction = async (req, res) => {
+    try {
+        await deleteReactionLogic(req.params.id);
+        res.status(200).send('Reaction deleted successfully');
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Erreur serveur');
+    }
+};
+
+module.exports = { addReaction, getReactionsByMessages, getReactionsByMessageId, updateReaction, deleteReaction };
