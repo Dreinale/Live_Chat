@@ -1,0 +1,271 @@
+body {
+    font-family: 'Helvetica', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #f6f8fb;
+}
+
+.admin-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    border-radius: 10px;
+}
+
+h1 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.user-management table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+}
+
+.user-management th {
+    padding: 15px;
+    text-align: left;
+    background-color: #f5f7fa;
+    color: #333;
+    font-weight: 600;
+}
+
+.user-management td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.user-management button {
+    padding: 10px 20px;
+    margin: 20px 0;
+    border: none;
+    border-radius: 50px;
+    background: #3498db;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    font-weight: 600;
+}
+
+.user-management button:hover {
+    background: #2980b9;
+    transform: scale(1.05);
+}
+
+.user-management td button {
+    padding: 7px 15px;
+    margin: 0 5px;
+    border-radius: 50px;
+}
+
+.user-management td button:first-child {
+    background: #2ecc71;
+}
+
+.user-management td button:first-child:hover {
+    background: #27ae60;
+}
+
+.user-management td button:last-child {
+    background: #e74c3c;
+}
+
+.user-management td button:last-child:hover {
+    background: #c0392b;
+}
+
+/* React Modal CSS */
+.ReactModal__Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ReactModal__Content {
+    position: relative;
+    width: 80%;
+    max-width: 500px;
+    margin: 0 auto;
+    border: none;
+    background: #fff;
+    overflow: auto;
+    border-radius: 8px;
+    outline: none;
+    padding: 20px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form label {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+form select {
+    appearance: none;
+    background-color: #fff;
+    background-image: linear-gradient(45deg, transparent 50%, #333333 50%),
+    linear-gradient(135deg, #333333 50%, transparent 50%),
+    linear-gradient(to right, #333333, #333333);
+    background-position: calc(100% - 20px) center, calc(100% - 15px) center,
+    calc(100% - 2.5em) center;
+    background-size: 5px 5px, 5px 5px, 1px 1.5em;
+    background-repeat: no-repeat;
+}
+
+form input[type="submit"] {
+    margin-top: 20px;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 50px;
+    background: #3498db;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+}
+
+form input[type="submit"]:hover {
+    background: #2980b9;
+    transform: scale(1.05);
+}
+
+button {
+    cursor: pointer;
+}
+
+/* FontAwesome Icons */
+.fa-times {
+    color: #999;
+    font-size: 16px;
+}
+
+.fa-times:hover {
+    color: #666;
+}
+
+
+.role-dropdown {
+    width: 80px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+    font-size: 14px;
+    color: #333333;
+}
+
+.role-dropdown:hover {
+    border-color: #777777;
+}
+
+.role-dropdown:focus {
+    outline: none;
+    border-color: #2255ff;
+}
+
+.admin-panel table {
+    width: 100%;
+    table-layout: auto; /* change from the default "fixed" to "auto" */
+    word-wrap: break-word;
+}
+
+.admin-panel th, .admin-panel td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Optionnel : Ajoutez cette classe si vous voulez que le tableau soit scrollable sur les petits écrans */
+.scrollable-table {
+    overflow-x: auto;
+}
+
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-size: 18px;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+.pagination button {
+    padding: 10px 20px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    margin: 0 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    font-weight: 600;
+    outline: none;
+}
+
+.Previous-button {
+    background-color: #3498db;
+}
+
+.Next-button {
+    background-color: #1abc9c;
+}
+
+.pagination button:hover {
+    transform: scale(1.1);
+}
+
+.pagination button:disabled {
+    background-color: #bbb;
+    cursor: not-allowed;
+}
+
+.pagination p {
+    margin: 0 20px;
+    font-weight: 700;
+}
