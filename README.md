@@ -58,3 +58,4 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de 
 
 ## Auteurs
 - **Dreinale** - [GitHub](https://github.com/Dreinale)
+- - **Marin_Pavel**
